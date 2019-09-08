@@ -1,0 +1,40 @@
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
+
+<h2>OPEN REQUESTS IN LAST 30 DAYS</h2>
+
+<table>
+    <tr>
+        <th>Customer</th>
+        <th>Case Title</th>
+        <th>Case Type</th>
+        <th>Assigned Team</th>
+        <th>Staus</th>                                   
+    </tr>                                           
+        <% for(var item in data) { %>  
+            
+            <% for(var item2 in data[item]) { %>
+                <td><%=  data[item][item2] %> </td>                                        
+            <% } %>
+            </tr>                          
+        <% } %>                                                                                                                                                        
+</table>
+

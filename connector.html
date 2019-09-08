@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <script src="https://statics.teams.microsoft.com/sdk/v1.4.2/js/MicrosoftTeams.min.js" crossorigin="anonymous"></script>
+    </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <body>
+            <div class="container">
+                    <div class="jumbotron">
+                      <h2><b>Connector Setup Page</b></h2>      
+                      <p>Connect Escalation Management System with teams so the channel gets notified everytime new request comes to the portal</p>
+                      <button class="btn btn-default" onclick="onClick()">Enable Connector</button>
+                    </div>      
+            
+                    <div>
+                            <form id="webhookForm" method="POST" action="https://64354f22.ngrok.io/connector_save">
+                                <b>WEBHOOK URL</b><br>
+                                <input id="webhookurl" type="text" style="width: 100%"  name="webhook" >                        
+                            </form> 
+                            <b>This is just for demo, in produciton never reveal the webhook url. Also, the LOB itself is responsible for saving the url for future calls</b>
+                    </div>
+            
+            </div>
+
+            
+
+    </body>
+
+    <script type="text/javascript">
+    
+    microsoftTeams.initialize();
+
+    microsoftTeams.settings.registerOnSaveHandler(function(saveEvent){
+        document.getElementById("webhookForm").submit();
+        saveEvent.notifySuccess();
+
+    });
+
+    </script>
+    
+    <script>
+    function onClick() 
+    {        
+                    
+        var settings = {
+        entityId: '#ffc300',
+        contentUrl: 'https://64354f22.ngrok.io/connector',
+        configName: 'Orange'
+        }
+
+        microsoftTeams.settings.setSettings(settings);
+        
+        microsoftTeams.settings.getSettings(function(state){
+                //alert(state)
+                //alert(state.webhookUrl)
+                document.getElementById("webhookurl").value = state.webhookUrl
+                console.log(state.webhookUrl);
+        })
+        
+        microsoftTeams.settings.setValidityState(true);  
+            
+    }
+    </script>
+</html>

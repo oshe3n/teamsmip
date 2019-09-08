@@ -1,0 +1,43 @@
+<html>
+<body>
+<form>
+  <input type="radio" name="type" value="bing" onclick="onClick()"> OPEN REQUESTS<br>
+  <input type="radio" name="type" value="google" onclick="onClick()"> REQUESTS IN PROGRESS
+</form>
+
+<script src="https://statics.teams.microsoft.com/sdk/v1.4.2/js/MicrosoftTeams.min.js" crossorigin="anonymous"></script>
+
+<script type="text/javascript">  
+
+microsoftTeams.initialize();
+microsoftTeams.settings.registerOnSaveHandler(function(saveEvent){
+
+    var radios = document.getElementsByName("type");
+    if (radios[0].checked) {
+       microsoftTeams.settings.setSettings({
+         entityId: "OPEN REQUESTS",
+         contentUrl: "https://64354f22.ngrok.io/a",
+         suggestedDisplayName: "OPEN REQUESTS",
+         websiteUrl: "https://64354f22.ngrok.io/a",
+         removeUrl: "https://64354f22.ngrok.io/a",
+      });
+    } else {
+       microsoftTeams.settings.setSettings({
+         entityId: "InProgress REQUESTS",
+         contentUrl: "https://64354f22.ngrok.io/b",
+         suggestedDisplayName: "REQUESTS InProgress",
+         websiteUrl: "https://64354f22.ngrok.io/b",
+         removeUrl: "https://64354f22.ngrok.io/b",
+      });
+    }
+
+    saveEvent.notifySuccess();
+});
+
+function onClick() {
+    microsoftTeams.settings.setValidityState(true);
+}
+
+</script>
+</body>
+</html>

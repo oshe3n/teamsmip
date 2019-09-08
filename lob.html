@@ -1,0 +1,88 @@
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        
+        <style>
+        
+            .card {
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                margin: 15px;
+                border-radius: 5px;
+                padding: 25px;
+            }
+        
+                .card:hover {
+                    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+                }
+        
+            .mytext {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18px;
+            }
+        
+            .form-control {
+                max-width: 100%;
+            }
+        </style>   
+          
+
+        <div class="container">
+            <div class="col-md-12">
+                    <h3 style="padding-left: 30px"><b>ESCALATION MANAGEMENT SYSTEM </b></h3>                                            
+            </div>
+        </div>        
+        <div class="container">                
+            <div class="col-lg-4">                                
+                <div class="row">
+                    <div class="card mytext">
+                        <label><b>Create New Escalation Case</b></label>
+                        <form action="http://localhost:3333/process_post" method="post" style="margin-top:15px;">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="Customer" placeholder="Customer Name" name="Customer">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="CaseTitle" placeholder="Case Title" name="CaseTitle">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="CaseType" placeholder="Case Type" name="CaseType">
+                            </div>                                                                                                                                      
+                            <button class="btn"><b>Create</b></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="card mytext">
+                        <label><b>Recent Escalations</b></label>
+                        <table class="table table-hover" style="margin-top:15px; font-size:15px;">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Case Title</th>
+                                    <th>Case Type</th>
+                                    <th>Assigned Team</th>
+                                    <th>Staus</th>                                   
+                                </tr>
+                            </thead>
+                            <tbody>                                 
+                                    <% for(var item in data) { %>  
+                                        <tr>
+                                        <% for(var item2 in data[item]) { %>
+                                            <td><%=  data[item][item2] %> </td>                                        
+                                        <% } %>
+                                        </tr>                          
+                                    <% } %>                                                                                                                                                        
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
